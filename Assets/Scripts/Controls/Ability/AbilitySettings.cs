@@ -32,14 +32,12 @@ public class AbilitySettings : ScriptableObject
     public GameObject ShootProjectile(AbilitySystem system)
     {
         _abilitySystem = system;
-        //if ( CurrentFireballsShot >= MaxFireballs) return null;//when we shot the max num of projectiles
         
         return CreateProjectile();
     }
 
     private GameObject CreateProjectile()
     {
-        //currentFireballsShot++;
         return Instantiate(fireballPrefab);
     }
 }
