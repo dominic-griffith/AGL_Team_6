@@ -15,4 +15,5 @@ MonoBehaviour:
   maxFireballs: 5
   fireBallSpeed: 15
   rateOfFireTime: 1
+  fireballOffset: -90
   fireballPrefab: {fileID: 6021984772662800500, guid: 53c24af307db41f48abb23ef91643560, type: 3}
