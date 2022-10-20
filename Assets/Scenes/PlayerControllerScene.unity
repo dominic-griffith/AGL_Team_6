@@ -847,9 +847,6 @@ MonoBehaviour:
   abilitySettings: {fileID: 11400000, guid: 9d75e5e94e9f4ae4dba785924755399a, type: 2}
   leftRightPadding: 1
   topBottomPadding: 1
-  _currentTransform: {fileID: 0}
-  _lookDirectionX: 0
-  _lookDirectionY: 0
 --- !u!1 &2044006955
 GameObject:
   m_ObjectHideFlags: 0
@@ -894,7 +891,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _camera: {fileID: 1828562110}
-  _renderFeature: {fileID: -6509014680935142128, guid: 424799608f7334c24bf367e4bbfa7f9a, type: 2}
+  _renderFeature: {fileID: 8126031585010502791, guid: 9617737112278af44a73dbdd2e2abd5d, type: 2}
   _rendererType: 0
   _platformType: 0
   _iniSettings: {fileID: 0}
@@ -974,5 +971,5 @@ MonoBehaviour:
   movementSystem: {fileID: 1900798904}
   movementSettings: {fileID: 11400000, guid: afab4a83a55542d409cf33d1e8800a66, type: 2}
   controls: {fileID: 11400000, guid: 9c18ef7771850d741aba22d3f9c243dc, type: 2}
-  abilitySystem: {fileID: 0}
+  abilitySystem: {fileID: 1900798906}
   isPlayerDebugOpen: 1

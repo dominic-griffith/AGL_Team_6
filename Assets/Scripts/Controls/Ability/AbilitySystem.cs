@@ -130,7 +130,7 @@ public class AbilitySystem : MyNamespace.System
     }
 
   
-    private void ApplyForwardSpeedMultiplier(GameObject gameObject)
+    private void ApplyForwardSpeedMultiplier(GameObject gameObjectBullet)
     {
         if (gameObject == null)
         {
@@ -139,15 +139,14 @@ public class AbilitySystem : MyNamespace.System
         }
         SetMouseInput();
         
-        gameObject.transform.position = _currentTransform.position;
+        gameObjectBullet.transform.position = _currentTransform.position;
         _currentTransform.rotation = Quaternion.Euler(0,0,_lookAngle);
-        gameObject.transform.rotation = Quaternion.Euler(0, 0, _lookAngle+ abilitySettings.FireballOffset);
-        gameObject.GetComponent<Rigidbody2D>().AddForce(_currentTransform.right * abilitySettings.MaxFireballSpeed, ForceMode2D.Impulse);
+        gameObjectBullet.transform.rotation = Quaternion.Euler(0, 0, _lookAngle+ abilitySettings.FireballOffset);
+        gameObjectBullet.GetComponent<Rigidbody2D>().AddForce(_currentTransform.right * abilitySettings.MaxFireballSpeed, ForceMode2D.Impulse);
     }
 
     private void SetMouseInput()
     {
-        _lookDirection = _camera.ScreenToWorldPoint(Input.mousePosition);
-        _lookAngle = Mathf.Atan2(_lookDirection.y, _lookDirection.x) * Mathf.Rad2Deg;
+        _lookAngle = Mathf.Atan2(_lookDirectionY, _lookDirectionX) * Mathf.Rad2Deg;
     }
 }
