@@ -25,6 +25,7 @@ public class TorchTrigger : MonoBehaviour
         anim.SetBool("Play", true);
         //play torch sound
         isOn = true;
+        GameManager.GetInstance().FindTorchesLeft();
 
     }
 }
