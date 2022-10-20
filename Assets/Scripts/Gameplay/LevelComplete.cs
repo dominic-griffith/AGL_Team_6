@@ -9,12 +9,13 @@ public class LevelComplete : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
-            LoadNextLevel();
+            StartCoroutine(LoadNextLevel());
         }
     }
 
-    private void LoadNextLevel() // loads next level in build index
+    private IEnumerator LoadNextLevel() // loads next level in build index
     {
+        yield return new WaitForSeconds(1);
         SceneManager.LoadScene(GetCurrentScene() + 1);
     }
 
