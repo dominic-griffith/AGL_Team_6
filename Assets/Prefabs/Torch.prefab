@@ -189,7 +189,7 @@ MonoBehaviour:
   m_Intensity: 0
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 000000003f2d2b8345c056e9a5bdeb3d4752b92a
+  m_ApplyToSortingLayers: 000000003f2d2b8345c056e9a5bdeb3d4752b92a835c1550
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0

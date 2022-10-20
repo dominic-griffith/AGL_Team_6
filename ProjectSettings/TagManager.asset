@@ -54,3 +54,6 @@ TagManager:
   - name: Doors
     uniqueID: 716788295
     locked: 0
+  - name: Decorations
+    uniqueID: 1343577219
+    locked: 0
