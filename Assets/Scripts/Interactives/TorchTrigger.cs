@@ -5,7 +5,7 @@ using UnityEngine;
 public class TorchTrigger : MonoBehaviour
 {
     private Animator anim;
-    public bool isOn = false;
+    [HideInInspector] public bool isOn = false;
 
     private void Start()
     {
