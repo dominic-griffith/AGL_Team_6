@@ -1,8 +1,12 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AbilitySystem : MyNamespace.System
 {
     [Header("Dependencies")] 
+    [SerializeField]
+    private TMP_Text bulletCounterText;
     [SerializeField]
     private Transform leftArmTransform;
     [SerializeField]
@@ -43,6 +47,7 @@ public class AbilitySystem : MyNamespace.System
     private float _lookDirectionY;
     private Camera _camera;
     private int _currentFireballsShot = 0;
+    private bool _textCounterIsNull;
     
     //inner public
     public bool ShotFired { get { return _shotFired; } set { _shotFired = value; } } 
@@ -52,11 +57,13 @@ public class AbilitySystem : MyNamespace.System
     {
         _camera = Camera.main;
         _currentTransform = leftArmTransform;
+        _textCounterIsNull = bulletCounterText == null ? true : false;
     }
 
     public void Update()
     {
         UpdateArmTransform();
+        
         if (Time.time > _lastShotTime + abilitySettings.rateOfFireTime  && ShotFired)
         {
             ShotFired = false;
@@ -71,7 +78,7 @@ public class AbilitySystem : MyNamespace.System
                 Debug.Log("No more ammo");
             }
         }
-        
+        UpdateBulletCounter();
     }
 
     /**
@@ -148,5 +155,12 @@ public class AbilitySystem : MyNamespace.System
     private void SetMouseInput()
     {
         _lookAngle = Mathf.Atan2(_lookDirectionY, _lookDirectionX) * Mathf.Rad2Deg;
+    }
+
+    private void UpdateBulletCounter()
+    {
+        if (_textCounterIsNull) return;
+        
+        bulletCounterText.text = $"Bullets: {abilitySettings.MaxFireballs-_currentFireballsShot}/{abilitySettings.MaxFireballs}";
     }
 }

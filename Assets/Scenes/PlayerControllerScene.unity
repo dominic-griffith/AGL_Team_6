@@ -797,6 +797,9 @@ MonoBehaviour:
   movementSettings: {fileID: 11400000, guid: afab4a83a55542d409cf33d1e8800a66, type: 2}
   targetRigidbody: {fileID: 1900798901}
   lookDirection: {fileID: 1900798903}
+  maxHealth: 100
+  currentHealth: 0
+  healthBar: {fileID: 0}
 --- !u!61 &1900798905
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -835,6 +838,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50fd6c122e5a9d94da03b0a4fbb3c0a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletCounterText: {fileID: 283918733}
   leftArmTransform: {fileID: 889639858}
   rightArmTransform: {fileID: 1521421198}
   forwardArmTransform: {fileID: 1148011027}

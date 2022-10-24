@@ -1,6 +1,7 @@
 ﻿using System;
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Moves a Rigidbody in a direction.
@@ -54,18 +55,38 @@ public class MovementSystem : MyNamespace.System
     [PublicAPI] public Vector3 MovementDirection { get; set; } = Vector3.zero;
     [PublicAPI] public Vector2 PlayerDirection { get; set; } = Vector3.zero;
     [PublicAPI] public Rigidbody2D Rigidbody => targetRigidbody;
-    
+
+    public int maxHealth = 100;
+    public int currentHealth;
+
+    public HealthBar healthBar;
+
     // Methods
+
+    private void Start()
+    {
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
+    }
 
     private void Update()
     {
         UpdateMovement();
+
+        //The following code is to test the health's system functionality.
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            TakeDamage(20);
+        }
+        IsAlive();
     }
 
     private void UpdateMovement()
     {
         ApplyForwardSpeedMultiplier();
         targetRigidbody.velocity = movementSettings.UpdateVelocity(this);
+        
+ 
     }
 
     private void ApplyForwardSpeedMultiplier()
@@ -75,4 +96,19 @@ public class MovementSystem : MyNamespace.System
         if (forwardSpeed > 0.1f)
             MovementDirection += lookDirection.forward * (forwardSpeed * (ForwardSpeedMultiplier - 1));
     }
+
+    private void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
+    }
+
+    private void IsAlive()
+    {
+        if(currentHealth <= 0)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+    }
+
 }
