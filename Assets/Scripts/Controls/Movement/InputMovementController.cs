@@ -6,23 +6,28 @@
 
 public class InputMovementController : InputController<MovementSystem>
 {
-    /*[Header("Dependencies")]
+    [Header("Dependencies")] [SerializeField]
+    private Animator animController;
     
-    [SerializeField]
-    [Tooltip("The transform that points in the forward arm direction.")]
-    private Transform armTransform;*/
-    
+    // other debugging stuff
     [HideInInspector]
     public float forwardAxis;
     [HideInInspector]
     public float rightAxis;
-        
-    private bool _isInstanceNotNull;
+    
+    //animation stuff
+    private static readonly int WalkNorth = Animator.StringToHash("northAnim");
+    private static readonly int WalkSouth = Animator.StringToHash("southAnim");
+    private static readonly int WalkEast = Animator.StringToHash("eastAnim");
+    private static readonly int WalkWest = Animator.StringToHash("westAnim");
+
 
     private void Update()
     {
         forwardAxis = CalculateAxis(controls.forward, controls.backward);
         rightAxis = CalculateAxis(controls.right, controls.left);
+        
+        SetAnimationState(forwardAxis, rightAxis);
 
         system.PlayerDirection = new Vector2(rightAxis, forwardAxis);
         system.MovementDirection = new Vector3 ( rightAxis, forwardAxis, 0f).normalized;
@@ -43,6 +48,31 @@ public class InputMovementController : InputController<MovementSystem>
         }
 
         return result;
+    }
+
+    private void SetAnimationState(float forwardValAxis, float rightValAxis)
+    {
+        if (forwardAxis == 0f && rightAxis == 0f)
+            animController.speed = 0f;
+        else
+            animController.speed = 1f;
+        if (forwardValAxis == 1)
+        {
+            animController.CrossFade(WalkNorth,0,0);
+        }
+        else if (forwardValAxis == -1)
+        {
+            animController.CrossFade(WalkSouth,0,0);
+        }
+        else if (rightValAxis == 1)
+        {
+            animController.CrossFade(WalkEast,0,0);
+        }
+        else if (rightValAxis == -1)
+        {
+            animController.CrossFade(WalkWest,0,0);
+        }
+        
     }
 
     private void OnDisable()

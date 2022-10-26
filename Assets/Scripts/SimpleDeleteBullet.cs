@@ -16,7 +16,7 @@ public class SimpleDeleteBullet : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D col)
-    {
+    {// here we do the bullet behaviour
         if(col.transform.CompareTag("Player")) return;
         Destroy(gameObject);
     }
