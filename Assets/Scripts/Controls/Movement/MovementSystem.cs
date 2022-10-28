@@ -66,6 +66,9 @@ public class MovementSystem : MyNamespace.System
     private void Start()
     {
         currentHealth = maxHealth;
+        
+        if (healthBar == null) return;
+        
         healthBar.SetMaxHealth(maxHealth);
     }
 

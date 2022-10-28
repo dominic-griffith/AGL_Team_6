@@ -14,13 +14,15 @@ public class InputMovementController : InputController<MovementSystem>
     public float forwardAxis;
     [HideInInspector]
     public float rightAxis;
+
+    public int CurrentAnimationState => _currentState;
     
     //animation stuff
     private static readonly int WalkNorth = Animator.StringToHash("northAnim");
     private static readonly int WalkSouth = Animator.StringToHash("southAnim");
     private static readonly int WalkEast = Animator.StringToHash("eastAnim");
     private static readonly int WalkWest = Animator.StringToHash("westAnim");
-
+    private int _currentState;
 
     private void Update()
     {
@@ -58,18 +60,22 @@ public class InputMovementController : InputController<MovementSystem>
             animController.speed = 1f;
         if (forwardValAxis == 1)
         {
+            _currentState = WalkNorth;
             animController.CrossFade(WalkNorth,0,0);
         }
         else if (forwardValAxis == -1)
         {
+            _currentState = WalkSouth;
             animController.CrossFade(WalkSouth,0,0);
         }
         else if (rightValAxis == 1)
         {
+            _currentState = WalkEast;
             animController.CrossFade(WalkEast,0,0);
         }
         else if (rightValAxis == -1)
         {
+            _currentState = WalkWest;
             animController.CrossFade(WalkWest,0,0);
         }
         

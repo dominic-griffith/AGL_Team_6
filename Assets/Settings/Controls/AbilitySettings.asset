@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de0be9b9b6cd3384fad21d0a213de2a8, type: 3}
   m_Name: AbilitySettings
   m_EditorClassIdentifier: 
-  maxFireballs: 5
+  maxFireballs: 100
   fireBallSpeed: 15
   rateOfFireTime: 1
   fireballOffset: 0

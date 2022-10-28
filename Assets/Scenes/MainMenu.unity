@@ -1177,9 +1177,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e96c2c1bf8600f140b6bb4fddb5f113d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuSceneThemeSong: 
+  menuSceneThemeSong: GameThemeSong
   gameplaySceneLevel01: 
-  audioSources: []
+  audioSources:
+  - name: BonesBreaking
+    clip: {fileID: 8300000, guid: e0dfc5df8e3cd3b458aa4f238a676ca1, type: 3}
+    volume: 0.25
+    pitch: 1
+    loop: 0
+    audioType: 0
+    source: {fileID: 0}
+  - name: FireProjectile
+    clip: {fileID: 8300000, guid: 9cbc9f7de1e34b541b6f33f943b0c7fa, type: 3}
+    volume: 0.25
+    pitch: 1
+    loop: 0
+    audioType: 0
+    source: {fileID: 0}
+  - name: TorchLit
+    clip: {fileID: 8300000, guid: a0179094a76592446933dcee205dab31, type: 3}
+    volume: 0.25
+    pitch: 1
+    loop: 0
+    audioType: 0
+    source: {fileID: 0}
+  - name: WaterSound
+    clip: {fileID: 8300000, guid: ac1241715371970408b6b12f002b54ed, type: 3}
+    volume: 0.25
+    pitch: 1
+    loop: 0
+    audioType: 0
+    source: {fileID: 0}
+  - name: GameThemeSong
+    clip: {fileID: 8300000, guid: d0b359bb0bd23d5479f0ebb7e230299e, type: 3}
+    volume: 0.25
+    pitch: 1
+    loop: 1
+    audioType: 1
+    source: {fileID: 0}
+  - name: PlayerDamageSound
+    clip: {fileID: 8300000, guid: f8ac0a1d4acd9774a8d2a7387a26a43b, type: 3}
+    volume: 0.25
+    pitch: 1
+    loop: 0
+    audioType: 0
+    source: {fileID: 0}
 --- !u!4 &453486183
 Transform:
   m_ObjectHideFlags: 0

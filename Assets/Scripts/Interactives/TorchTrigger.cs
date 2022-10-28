@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using AudioUtility;
 using UnityEngine;
 
 public class TorchTrigger : MonoBehaviour
@@ -17,6 +18,7 @@ public class TorchTrigger : MonoBehaviour
         if(collision.gameObject.tag == "Fire")
         {
             TurnOnTorch();
+            AudioManager.Instance.Play("TorchLit");
         }
     }
 

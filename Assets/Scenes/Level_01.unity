@@ -2297,6 +2297,17 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!114 &367030765 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3777177288123843353, guid: 3b2ef80de95681041959056937fc38e6, type: 3}
+  m_PrefabInstance: {fileID: 4785571396099939063}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f9447a8468bba24bab65257bd528037, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &378660441
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3228,6 +3239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50fd6c122e5a9d94da03b0a4fbb3c0a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InputMovementControllerScript: {fileID: 0}
   bulletCounterText: {fileID: 0}
   leftArmTransform: {fileID: 1625056804}
   rightArmTransform: {fileID: 1492625491}
@@ -4718,6 +4730,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3777177288447341382, guid: 3b2ef80de95681041959056937fc38e6, type: 3}
+      propertyPath: InputMovementControllerScript
+      value: 
+      objectReference: {fileID: 367030765}
     - target: {fileID: 3777177288447341384, guid: 3b2ef80de95681041959056937fc38e6, type: 3}
       propertyPath: m_Name
       value: NewPlayer

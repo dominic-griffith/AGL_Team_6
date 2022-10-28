@@ -525,7 +525,7 @@ Transform:
   m_GameObject: {fileID: 3777177288447341384}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.32, y: -2.92, z: 0}
-  m_LocalScale: {x: 7, y: 7, z: 7}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3777177288123843352}
@@ -665,6 +665,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50fd6c122e5a9d94da03b0a4fbb3c0a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InputMovementControllerScript: {fileID: 3777177288123843353}
   bulletCounterText: {fileID: 3777177287887425905}
   leftArmTransform: {fileID: 3777177287445611342}
   rightArmTransform: {fileID: 3777177289066240882}

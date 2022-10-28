@@ -1,3 +1,4 @@
+using AudioUtility;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -5,6 +6,8 @@ using UnityEngine.UI;
 public class AbilitySystem : MyNamespace.System
 {
     [Header("Dependencies")] 
+    [SerializeField]
+    private InputMovementController InputMovementControllerScript;
     [SerializeField]
     private TMP_Text bulletCounterText;
     [SerializeField]
@@ -91,41 +94,21 @@ public class AbilitySystem : MyNamespace.System
         _lookDirectionX = _camera.ScreenToWorldPoint(Input.mousePosition).x - gameObject.transform.position.x;
         _lookDirectionY = _camera.ScreenToWorldPoint(Input.mousePosition).y - gameObject.transform.position.y;
         
-        if (_lookDirectionX < -topBottomPadding) 
+        if (_lookDirectionX < -topBottomPadding && InputMovementControllerScript.rightAxis <=-1) 
         {// Mouse is to left of player
-            if (_lookDirectionY < -leftRightPadding) 
-            {// Face character to LEFT, DOWN
-                _currentTransform = bottomLeftArmTransform;
-            } 
-            else if (_lookDirectionY > leftRightPadding) 
-            {// Face character to LEFT, TOP
-                _currentTransform = topLeftArmTransform;
-            } 
-            else //if (_lookDirectionY == 0) 
-            {// Face character LEFT
-                _currentTransform = leftArmTransform;
-            }
+            // Face character LEFT
+            _currentTransform = leftArmTransform;
         }
-        else if (_lookDirectionX > topBottomPadding)
+        else if (_lookDirectionX > topBottomPadding && InputMovementControllerScript.rightAxis >= 1)
         {// Mouse is to right of player
-            if (_lookDirectionY < -leftRightPadding) 
-            {// Face character to RIGHT, DOWN
-                _currentTransform = bottomRightArmTransform;
-            } 
-            else if (_lookDirectionY > leftRightPadding) 
-            {// Face character to RIGHT, TOP
-                _currentTransform = topRightArmTransform;
-            } 
-            else //if (_lookDirectionY == 0) 
-            {// Face character RIGHT
+            // Face character RIGHT
                 _currentTransform = rightArmTransform;
-            }
         }
-        else if (_lookDirectionY > 0) 
+        else if (_lookDirectionY > 0 && InputMovementControllerScript.forwardAxis >= 1) 
         {// FACE character TOP
             _currentTransform = forwardArmTransform;
         }
-        else if (_lookDirectionY < 0) 
+        else if (_lookDirectionY < 0 && InputMovementControllerScript.forwardAxis <=-1) 
         {// FACE character DOWN
             _currentTransform = backwardArmTransform;
         }
@@ -145,7 +128,7 @@ public class AbilitySystem : MyNamespace.System
             return;
         }
         SetMouseInput();
-        
+        AudioManager.Instance.Play("FireProjectile");
         gameObjectBullet.transform.position = _currentTransform.position;
         _currentTransform.rotation = Quaternion.Euler(0, 0,_lookAngle);
         gameObjectBullet.transform.rotation = Quaternion.Euler(0, 0, _lookAngle+ abilitySettings.FireballOffset);
