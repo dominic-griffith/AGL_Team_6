@@ -40,4 +40,9 @@ public class AbilitySettings : ScriptableObject
     {
         return Instantiate(fireballPrefab);
     }
+
+    public void DecreaseCurrentFireballsShot(int amountToDecrease)
+    {
+        currentFireballsShot -= amountToDecrease;
+    }
 }

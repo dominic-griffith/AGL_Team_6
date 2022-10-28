@@ -1,15 +1,8 @@
-using AudioUtility;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class AbilitySystem : MyNamespace.System
 {
     [Header("Dependencies")] 
-    [SerializeField]
-    private InputMovementController InputMovementControllerScript;
-    [SerializeField]
-    private TMP_Text bulletCounterText;
     [SerializeField]
     private Transform leftArmTransform;
     [SerializeField]
@@ -50,7 +43,6 @@ public class AbilitySystem : MyNamespace.System
     private float _lookDirectionY;
     private Camera _camera;
     private int _currentFireballsShot = 0;
-    private bool _textCounterIsNull;
     
     //inner public
     public bool ShotFired { get { return _shotFired; } set { _shotFired = value; } } 
@@ -60,13 +52,11 @@ public class AbilitySystem : MyNamespace.System
     {
         _camera = Camera.main;
         _currentTransform = leftArmTransform;
-        _textCounterIsNull = bulletCounterText == null ? true : false;
     }
 
     public void Update()
     {
         UpdateArmTransform();
-        
         if (Time.time > _lastShotTime + abilitySettings.rateOfFireTime  && ShotFired)
         {
             ShotFired = false;
@@ -81,7 +71,7 @@ public class AbilitySystem : MyNamespace.System
                 Debug.Log("No more ammo");
             }
         }
-        UpdateBulletCounter();
+        
     }
 
     /**
@@ -94,21 +84,41 @@ public class AbilitySystem : MyNamespace.System
         _lookDirectionX = _camera.ScreenToWorldPoint(Input.mousePosition).x - gameObject.transform.position.x;
         _lookDirectionY = _camera.ScreenToWorldPoint(Input.mousePosition).y - gameObject.transform.position.y;
         
-        if (_lookDirectionX < -topBottomPadding && InputMovementControllerScript.rightAxis <=-1) 
+        if (_lookDirectionX < -topBottomPadding) 
         {// Mouse is to left of player
-            // Face character LEFT
-            _currentTransform = leftArmTransform;
+            if (_lookDirectionY < -leftRightPadding) 
+            {// Face character to LEFT, DOWN
+                _currentTransform = bottomLeftArmTransform;
+            } 
+            else if (_lookDirectionY > leftRightPadding) 
+            {// Face character to LEFT, TOP
+                _currentTransform = topLeftArmTransform;
+            } 
+            else //if (_lookDirectionY == 0) 
+            {// Face character LEFT
+                _currentTransform = leftArmTransform;
+            }
         }
-        else if (_lookDirectionX > topBottomPadding && InputMovementControllerScript.rightAxis >= 1)
+        else if (_lookDirectionX > topBottomPadding)
         {// Mouse is to right of player
-            // Face character RIGHT
+            if (_lookDirectionY < -leftRightPadding) 
+            {// Face character to RIGHT, DOWN
+                _currentTransform = bottomRightArmTransform;
+            } 
+            else if (_lookDirectionY > leftRightPadding) 
+            {// Face character to RIGHT, TOP
+                _currentTransform = topRightArmTransform;
+            } 
+            else //if (_lookDirectionY == 0) 
+            {// Face character RIGHT
                 _currentTransform = rightArmTransform;
+            }
         }
-        else if (_lookDirectionY > 0 && InputMovementControllerScript.forwardAxis >= 1) 
+        else if (_lookDirectionY > 0) 
         {// FACE character TOP
             _currentTransform = forwardArmTransform;
         }
-        else if (_lookDirectionY < 0 && InputMovementControllerScript.forwardAxis <=-1) 
+        else if (_lookDirectionY < 0) 
         {// FACE character DOWN
             _currentTransform = backwardArmTransform;
         }
@@ -128,7 +138,7 @@ public class AbilitySystem : MyNamespace.System
             return;
         }
         SetMouseInput();
-        AudioManager.Instance.Play("FireProjectile");
+        
         gameObjectBullet.transform.position = _currentTransform.position;
         _currentTransform.rotation = Quaternion.Euler(0, 0,_lookAngle);
         gameObjectBullet.transform.rotation = Quaternion.Euler(0, 0, _lookAngle+ abilitySettings.FireballOffset);
@@ -140,10 +150,13 @@ public class AbilitySystem : MyNamespace.System
         _lookAngle = Mathf.Atan2(_lookDirectionY, _lookDirectionX) * Mathf.Rad2Deg;
     }
 
-    private void UpdateBulletCounter()
+    public int GetCurrentFireballsShot()
     {
-        if (_textCounterIsNull) return;
-        
-        bulletCounterText.text = $"Bullets: {abilitySettings.MaxFireballs-_currentFireballsShot}/{abilitySettings.MaxFireballs}";
+        return _currentFireballsShot;
+    }
+
+    public void DecreaseCurrentFireballsShot(int amountToDecrease)
+    {
+        _currentFireballsShot -= amountToDecrease;
     }
 }
