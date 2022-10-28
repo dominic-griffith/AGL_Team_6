@@ -74,10 +74,10 @@ public class MovementSystem : MyNamespace.System
         UpdateMovement();
 
         //The following code is to test the health's system functionality.
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            TakeDamage(20);
-        }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    TakeDamage(20);
+        //}
         IsAlive();
     }
 
@@ -100,6 +100,15 @@ public class MovementSystem : MyNamespace.System
     private void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.name == "Enemy")
+        {
+            TakeDamage(20);
+        }
         healthBar.SetHealth(currentHealth);
     }
 

@@ -5,17 +5,33 @@ using UnityEngine;
 public class EnemyBehavior : MonoBehaviour
 {
 
-    public int maxHealth = 20, currentHealth;
+    private float speed = 1f, range;
+    public Transform player;
+    private Rigidbody2D rigidBodyEnemy;
+    private Vector2 movement;
 
-    public HealthBar healthBar;
-
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void Start()
     {
-        if(collision.gameObject.name == "Player")
-        {
-            Destroy(gameObject);
-        }
+        rigidBodyEnemy = this.GetComponent<Rigidbody2D>();
+    }
+
+    private void Update()
+    {
+        Vector3 direction = (player.position - transform.position);
+        float angle = Mathf.Atan2(direction.y, direction.x) * (Mathf.Rad2Deg);
+        rigidBodyEnemy.rotation = angle;
+        direction.Normalize();
+        movement = direction;
+    }
+
+    private void FixedUpdate()
+    {
+        moveCharacter(movement);
+    }
+
+    void moveCharacter(Vector2 direction)
+    {
+        rigidBodyEnemy.MovePosition((Vector2)transform.position + (direction * speed * Time.deltaTime));
     }
 
 
