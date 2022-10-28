@@ -34,5 +34,12 @@ public class EnemyBehavior : MonoBehaviour
         rigidBodyEnemy.MovePosition((Vector2)transform.position + (direction * speed * Time.deltaTime));
     }
 
-
+ /*   private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Fire")
+        {
+            Destroy(gameObject);
+        }
+    }
+ */
 }
